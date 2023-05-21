@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Johnnie Walker",
+    "purchaseRate": {
+      "bottle": 50,
+      "half": 30,
+      "quarter": 20,
+      "ninety": 40
+    },
+    "printRate": {
+      "bottle": 60,
+      "half": 35,
+      "quarter": 25,
+      "ninety": 50
+    },
+    "saleRate": {
+      "bottle": 80,
+      "half": 45,
+      "quarter": 35,
+      "ninety": 70
+    }
+  },
+  {
+    "id": 2,
+    "name": "Budweiser",
+    "purchaseRate": {
+      "bottle": 40,
+      "half": 25,
+      "quarter": 15,
+      "ninety": 30
+    },
+    "printRate": {
+      "bottle": 50,
+      "half": 30,
+      "quarter": 20,
+      "ninety": 40
+    },
+    "saleRate": {
+      "bottle": 60,
+      "half": 35,
+      "quarter": 25,
+      "ninety": 50
+    }
+  },
+  {
+    "id": 3,
+    "name": "Glenfiddich",
+    "purchaseRate": {
+      "bottle": 70,
+      "half": 40,
+      "quarter": 30,
+      "ninety": 60
+    },
+    "printRate": {
+      "bottle": 80,
+      "half": 45,
+      "quarter": 35,
+      "ninety": 70
+    },
+    "saleRate": {
+      "bottle": 100,
+      "half": 55,
+      "quarter": 45,
+      "ninety": 90
+    }
+  }
+]

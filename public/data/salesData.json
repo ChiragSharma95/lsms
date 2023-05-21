@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "date": "2023-05-01",
+    "brandId": 1,
+    "typeId": 1,
+    "quantity": {
+      "bottle": 100,
+      "half": 50,
+      "quarter": 75,
+      "ninety": 200
+    },
+    "sold": {
+      "bottle": 20,
+      "half": 10,
+      "quarter": 15,
+      "ninety": 50
+    }
+  },
+  {
+    "id": 2,
+    "date": "2023-05-02",
+    "brandId": 2,
+    "typeId": 2,
+    "quantity": {
+      "bottle": 80,
+      "half": 30,
+      "quarter": 50,
+      "ninety": 150
+    },
+    "sold": {
+      "bottle": 10,
+      "half": 5,
+      "quarter": 10,
+      "ninety": 30
+    }
+  },
+  {
+    "id": 3,
+    "date": "2023-05-03",
+    "brandId": 1,
+    "typeId": 2,
+    "quantity": {
+      "bottle": 120,
+      "half": 60,
+      "quarter": 90,
+      "ninety": 180
+    },
+    "sold": {
+      "bottle": 30,
+      "half": 15,
+      "quarter": 25,
+      "ninety": 60
+    }
+  }
+]
