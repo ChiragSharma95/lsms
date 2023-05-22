@@ -2,67 +2,164 @@
   {
     "id": 1,
     "name": "Johnnie Walker",
-    "purchaseRate": {
-      "bottle": 50,
-      "half": 30,
-      "quarter": 20,
-      "ninety": 40
-    },
-    "printRate": {
-      "bottle": 60,
-      "half": 35,
-      "quarter": 25,
-      "ninety": 50
-    },
-    "saleRate": {
-      "bottle": 80,
-      "half": 45,
-      "quarter": 35,
-      "ninety": 70
-    }
+    "types": [
+      {
+        "typeid": 1,
+        "rates": [
+          {
+            "size": "bottle",
+            "purchaseRate": 100,
+            "printRate": 150,
+            "saleRate": 200
+          },
+          {
+            "size": "half",
+            "purchaseRate": 50,
+            "printRate": 75,
+            "saleRate": 100
+          },
+          {
+            "size": "quarter",
+            "purchaseRate": 25,
+            "printRate": 35,
+            "saleRate": 50
+          },
+          {
+            "size": "ninety",
+            "purchaseRate": 75,
+            "printRate": 100,
+            "saleRate": 150
+          }
+        ]
+      },
+      {
+        "typeid": 2,
+        "rates": [
+          {
+            "size": "bottle",
+            "purchaseRate": 120,
+            "printRate": 180,
+            "saleRate": 240
+          },
+          {
+            "size": "half",
+            "purchaseRate": 60,
+            "printRate": 90,
+            "saleRate": 120
+          },
+          {
+            "size": "quarter",
+            "purchaseRate": 30,
+            "printRate": 45,
+            "saleRate": 60
+          },
+          {
+            "size": "ninety",
+            "purchaseRate": 90,
+            "printRate": 120,
+            "saleRate": 180
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 2,
-    "name": "Budweiser",
-    "purchaseRate": {
-      "bottle": 40,
-      "half": 25,
-      "quarter": 15,
-      "ninety": 30
-    },
-    "printRate": {
-      "bottle": 50,
-      "half": 30,
-      "quarter": 20,
-      "ninety": 40
-    },
-    "saleRate": {
-      "bottle": 60,
-      "half": 35,
-      "quarter": 25,
-      "ninety": 50
-    }
+    "name": "Grey Goose",
+    "types": [
+      {
+        "typeid": 3,
+        "rates": [
+          {
+            "size": "bottle",
+            "purchaseRate": 200,
+            "printRate": 250,
+            "saleRate": 300
+          },
+          {
+            "size": "half",
+            "purchaseRate": 100,
+            "printRate": 125,
+            "saleRate": 150
+          },
+          {
+            "size": "quarter",
+            "purchaseRate": 50,
+            "printRate": 60,
+            "saleRate": 75
+          },
+          {
+            "size": "ninety",
+            "purchaseRate": 150,
+            "printRate": 200,
+            "saleRate": 250
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 3,
-    "name": "Glenfiddich",
-    "purchaseRate": {
-      "bottle": 70,
-      "half": 40,
-      "quarter": 30,
-      "ninety": 60
-    },
-    "printRate": {
-      "bottle": 80,
-      "half": 45,
-      "quarter": 35,
-      "ninety": 70
-    },
-    "saleRate": {
-      "bottle": 100,
-      "half": 55,
-      "quarter": 45,
-      "ninety": 90
-    }
+    "name": "Bacardi",
+    "types": [
+      {
+        "typeid": 1,
+        "rates": [
+          {
+            "size": "bottle",
+            "purchaseRate": 150,
+            "printRate": 200,
+            "saleRate": 250
+          },
+          {
+            "size": "half",
+            "purchaseRate": 75,
+            "printRate": 100,
+            "saleRate": 125
+          },
+          {
+            "size": "quarter",
+            "purchaseRate": 40,
+            "printRate": 50,
+            "saleRate": 60
+          },
+          {
+            "size": "ninety",
+            "purchaseRate": 120,
+            "printRate": 150,
+            "saleRate": 180
+          }
+        ]
+      },
+      {
+        "typeid": 2,
+        "rates": [
+          {
+            "size": "bottle",
+            "purchaseRate": 170,
+            "printRate": 220,
+            "saleRate": 270
+          },
+          {
+            "size": "half",
+            "purchaseRate": 85,
+            "printRate": 110,
+            "saleRate": 135
+          },
+          {
+            "size": "quarter",
+            "purchaseRate": 45,
+            "printRate": 55,
+            "saleRate": 65
+          },
+          {
+            "size": "ninety",
+            "purchaseRate": 140,
+            "printRate": 180,
+            "saleRate": 220
+          }
+        ]
+      }
+    ]
   }
 ]

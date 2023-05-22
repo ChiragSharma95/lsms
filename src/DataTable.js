@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import MUIDataTable from 'mui-datatables';
-import { fetchBrands, fetchTypes, fetchSalesData } from './api/api';
+import { fetchBrands, fetchTypes, fetchSalesData, fetchSalesDataByDate } from './api/api';
+import BasicDatePicker from './components/BasicDatePicker';
+import Button from '@mui/material/Button';
 
 const DataTable = () => {
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
   const [salesData, setSalesData] = useState([]);
   const [formattedData, setFormattedData] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,39 +34,72 @@ const DataTable = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
+  function formatData(brands, types, salesData){
     if (brands.length > 0 && types.length > 0 && salesData.length > 0) {
-        // console.log('Inside useEffect brands: ', brands);
-        // console.log('Inside useEffect types: ', types);
-        // console.log('Inside useEffect salesData: ', salesData);
         const formattedData = salesData.map(data => {
-        const brand = brands.find((brand) => brand.id === data.brandId);
-        const type = types.find((type) => type.id === data.typeId);
+          const brand = brands.find(brand => brand.id === data.brandId);
+          const type = types.find(type => type.id === data.typeId);
+  
+          return {
+            date: data.date,
+            brand: brand ? brand.name : '',
+            type: type ? type.name : '',
+            quantityBottle: data.quantity.bottle,
+            quantityHalf: data.quantity.half,
+            quantityQuarter: data.quantity.quarter,
+            quantityNinety: data.quantity.ninety,
+            soldBottle: data.sold.bottle,
+            soldHalf: data.sold.half,
+            soldQuarter: data.sold.quarter,
+            soldNinety: data.sold.ninety,
+            remainingBottle: data.quantity.bottle - data.sold.bottle,
+            remainingHalf: data.quantity.half - data.sold.half,
+            remainingQuarter: data.quantity.quarter - data.sold.quarter,
+            remainingNinety: data.quantity.ninety - data.sold.ninety,
+          };
+        });
+        return formattedData;
+  }
+}
+    
+    useEffect(() => {
 
-        return {
-          date: data.date,
-          brand: brand ? brand.name : "",
-          type: type ? type.name : "",
-          quantityBottle: data.quantity.bottle,
-          quantityHalf: data.quantity.half,
-          quantityQuarter: data.quantity.quarter,
-          quantityNinety: data.quantity.ninety,
-          soldBottle: data.sold.bottle,
-          soldHalf: data.sold.half,
-          soldQuarter: data.sold.quarter,
-          soldNinety: data.sold.ninety,
-          remainingBottle: data.quantity.bottle - data.sold.bottle,
-          remainingHalf: data.quantity.half - data.sold.half,
-          remainingQuarter: data.quantity.quarter - data.sold.quarter,
-          remainingNinety: data.quantity.ninety - data.sold.ninety,
-        };
+    const formattedData = formatData(brands, types, salesData)
+
+    setFormattedData(formattedData);
+    }, [brands, types, salesData]);
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
+
+  const handleFetchData = async () => {
+    setLoading(true);
+    try {
+      console.log('selectedDate inside handleFetchData:', `${String(selectedDate.$y)}-${String((selectedDate.$M < 10) ? ('0'+ (selectedDate.$M + 1)) : (selectedDate.$M + 1))}-${String((selectedDate.$D < 10) ? ('0'+ (selectedDate.$D)) : (selectedDate.$D))}`);
+      const formattedDate = `${String(selectedDate.$y)}-${String((selectedDate.$M < 10) ? ('0'+ (selectedDate.$M + 1)) : (selectedDate.$M + 1))}-${String((selectedDate.$D < 10) ? ('0'+ (selectedDate.$D)) : (selectedDate.$D))}`;
+      const filteredData = await fetchSalesDataByDate(formattedDate);
+      console.log('filteredData inside handleFetchData', filteredData);
+      var dateWiseData = [];
+      Object.keys(filteredData).forEach(key => {
+        if(filteredData[key].date === formattedDate)
+        {
+            // console.log('key: ', key); 
+            // console.log('value: ', filteredData[key].date); 
+            dateWiseData.push(filteredData[key]);
+        }
       });
 
-      console.log('Before setFormattedData: ', formattedData);
-      setFormattedData(formattedData);
-      console.log('After setFormattedData: ', formattedData);
+      console.log('dateWiseData: ', dateWiseData); 
+
+      setSalesData(dateWiseData);
+
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false);
     }
-  }, [brands, types, salesData]);  
+  };
 
   const columns = [
     {
@@ -131,27 +167,28 @@ const DataTable = () => {
   const options = {
     selectableRows: 'none',
     responsive: 'standard',
-    onSearchChange: (searchText) => {
-        console.log("search chirag: " + JSON.stringify(formattedData));
-    }
   };
-
-  console.log('Before Return: ', formattedData);
 
   return (
     <div>
+      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'nowrap' }}>
+            <label style={{ margin: '10px', textAlign: 'center', alignItems: 'center' }} htmlFor="date">Select Date:</label>
+            <BasicDatePicker value={selectedDate} onChange={handleDateChange} style={{ margin: '10px', textAlign: 'center', alignItems: 'center' }} />
+            <Button variant="contained" color="primary" onClick={handleFetchData} style={{ height: '100%', margin: '10px', textAlign: 'center', alignItems: 'center' }}>
+            Fetch Data
+            </Button>
+      </div>
+
       {loading ? (
         <p>Loading data...</p>
-      ) : formattedData.length > 0 ? (
+      ) : (
         <MUIDataTable
-            title="Liquor Inventory"
-            data={formattedData}
-            columns={columns}
-            options={options}
+          title="Sales Data"
+          data={formattedData}
+          columns={columns}
+          options={options}
         />
-      ): (
-        <p>No data available.</p>
-    )}
+      )}
     </div>
   );
 };
